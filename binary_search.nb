@@ -1,0 +1,150 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5196,        141]
+NotebookOptionsPosition[      4923,        127]
+NotebookOutlinePosition[      5258,        142]
+CellTagsIndexPosition[      5215,        139]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"Behaves", " ", "as", " ", 
+    RowBox[{"Python", "'"}], "s", " ", "bisect_right"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "Locate", " ", "the", " ", "insertion", " ", "point", " ", "for", " ", 
+    "\"\<arg\>\"", " ", "in", " ", "the", " ", "sorted", " ", "list", " ", 
+    RowBox[{"\"\<list\>\"", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+   "When", " ", "arg", " ", "is", " ", "already", " ", "present", " ", "in", 
+    " ", "list", " ", "the", " ", "position", " ", "of", " ", "the", " ", 
+    "element", " ", "on", " ", "its", " ", "right", " ", "is", " ", 
+    RowBox[{"returned", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Use", " ", 
+    RowBox[{"Insert", "[", 
+     RowBox[{"list", ",", " ", "arg", ",", " ", 
+      RowBox[{"bisectRight", "[", 
+       RowBox[{"list", ",", " ", "arg"}], "]"}]}], "]"}], " ", "to", " ", 
+    "perform", " ", "the", " ", 
+    RowBox[{"insertion", "."}]}], " ", "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"bisectRight", "=", 
+    RowBox[{"Compile", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"arg", ",", "_Real"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"list", ",", "_Integer", ",", "1"}], "}"}]}], "}"}], ",", 
+      RowBox[{"Module", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"min", "=", "1"}], ",", 
+          RowBox[{"max", "=", 
+           RowBox[{"Length", "@", "list"}]}], ",", "i", ",", "x"}], "}"}], 
+        ",", 
+        RowBox[{
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"min", "\[LessEqual]", "max"}], ",", 
+           RowBox[{
+            RowBox[{"i", "=", 
+             RowBox[{"Floor", "[", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"min", "+", "max"}], ")"}], "/", "2"}], "]"}]}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"x", "=", 
+             RowBox[{"list", "[", 
+              RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"Which", "[", 
+             RowBox[{
+              RowBox[{"x", "\[Equal]", "arg"}], ",", 
+              RowBox[{
+               RowBox[{"min", "=", 
+                RowBox[{"max", "=", "i"}]}], ";", 
+               RowBox[{"Break", "[", "]"}]}], ",", 
+              RowBox[{"x", "<", "arg"}], ",", 
+              RowBox[{"min", "=", 
+               RowBox[{"i", "+", "1"}]}], ",", "True", ",", 
+              RowBox[{"max", "=", 
+               RowBox[{"i", "-", "1"}]}]}], "]"}]}]}], "]"}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"0", "\[Equal]", "max"}], ",", "1", ",", 
+           RowBox[{"max", "+", "1"}]}], "]"}]}]}], "]"}], ",", 
+      RowBox[{"CompilationTarget", "\[Rule]", "\"\<C\>\""}], ",", 
+      RowBox[{"RuntimeOptions", "\[Rule]", "\"\<Speed\>\""}]}], "]"}]}], 
+   ";"}]}]], "Input",
+ CellChangeTimes->{{3.621490314418962*^9, 3.621490314433764*^9}, {
+  3.62149066058569*^9, 3.621490688510231*^9}, {3.621491198449024*^9, 
+  3.6214912011571817`*^9}, {3.621491797670969*^9, 3.621491826275585*^9}, {
+  3.621491884474268*^9, 3.621491884751071*^9}, {3.621491951641543*^9, 
+  3.621491962687152*^9}, {3.621492022519401*^9, 3.621492040023575*^9}, {
+  3.621492157094376*^9, 3.621492175085744*^9}, {3.621492212128468*^9, 
+  3.6214922436205187`*^9}, {3.6214922876382303`*^9, 3.621492343840177*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"May", " ", "be", " ", "useful"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"cumul", "[", "list_", "]"}], ":=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Total", "@", 
+      RowBox[{"list", "[", 
+       RowBox[{"[", 
+        RowBox[{";;", "i"}], "]"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", 
+       RowBox[{"Length", "@", "list"}]}], "}"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.621506595987314*^9, 3.6215066790092363`*^9}, {
+  3.6215067515407476`*^9, 3.621506782506382*^9}, {3.621506888374174*^9, 
+  3.621506925177984*^9}, {3.621506957634986*^9, 3.621506960742016*^9}, {
+  3.621507022160437*^9, 3.6215070230141563`*^9}, {3.6215070576393747`*^9, 
+  3.62150706621455*^9}}]
+},
+WindowSize->{959, 1015},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 3561, 83, 231, "Input"],
+Cell[4121, 105, 798, 20, 55, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
