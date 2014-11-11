@@ -1,0 +1,77 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      1960,         68]
+NotebookOptionsPosition[      1724,         55]
+NotebookOutlinePosition[      2061,         70]
+CellTagsIndexPosition[      2018,         67]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{"power", " ", "law", " ", "fit"}], " ", "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"xi", "=", "16"}], ";", 
+    RowBox[{"xf", "=", 
+     RowBox[{"xi", "+", "8"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"fit", "=", 
+     RowBox[{"LinearModelFit", "[", 
+      RowBox[{
+       RowBox[{"Log10", "@", 
+        RowBox[{"dat", "[", 
+         RowBox[{"[", 
+          RowBox[{"xi", ";;", "xf"}], "]"}], "]"}]}], ",", "logx", ",", 
+       "logx"}], "]"}]}], ";"}], "\n", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"Normal", "@", "fit"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"logx", ",", "0", ",", "12"}], "}"}], ",", 
+     RowBox[{"Axes", "\[Rule]", "False"}], ",", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", 
+     RowBox[{"Epilog", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"PointSize", "@", ".02"}], ",", 
+        RowBox[{"Point", "@", 
+         RowBox[{"Log10", "@", "dat"}]}]}], "}"}]}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.624687556664633*^9, 3.624687592198371*^9}, {
+  3.6246878641133623`*^9, 3.624687877037298*^9}}]
+},
+WindowSize->{740, 867},
+WindowMargins->{{140, Automatic}, {Automatic, 14}},
+FrontEndVersion->"9.0 for Linux x86 (64-bit) (February 7, 2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 1163, 33, 121, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
